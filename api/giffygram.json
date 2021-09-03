@@ -1,0 +1,49 @@
+{
+	"users": [
+	  {
+		"id": 1,
+		"name": "Sydney",
+		"dateJoined": 1630513631166,
+		"email": "sydney@gmail.com"
+	  },
+	  {
+		"id": 2,
+		"name": "Morgan",
+		"dateJoined": 1630513631183,
+		"email": "morgan@gmail.com"
+	  },
+	  {
+		"name": "Tia",
+		"dateJoined": 1630513631183,
+		"email": "tia@gmail.com",
+		"id": 4
+	  },
+	  {
+		"name": "Susie",
+		"dateJoined": 1630513631183,
+		"email": "susie@gmail.com",
+		"id": 5
+	  },
+	  {
+		"name": "Jake",
+		"dateJoined": 1630513631183,
+		"email": "jake@gmail.com",
+		"id": 6
+	  }
+	],
+	"posts": [
+		{
+			"id":1,
+			"userId":1,
+			"title":"TGIF!",
+			"imageURL": "https://media.giphy.com/media/sTczweWUTxLqg/giphy.gif?cid=ecf05e4793db3e9fc94b97c06fceb6390ec88a89236ef93d&rid=giphy.gif&ct=g"
+		},
+		{
+			"id":2,
+			"userId":1,
+			"title":"Sleepy!",
+			"imageURL": "https://media.giphy.com/media/ZLxRWG0vhzpiE/giphy.gif"
+		}
+	],
+	"messages": []
+  }
