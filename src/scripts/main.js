@@ -3,6 +3,7 @@ import { getJokes } from "./data/JokesData.js";
 import { NavBar } from "./nav/NavBar.js";
 import { getPosts } from "./data/DataManager.js"
 import { PostList } from "./feed/PostList.js"
+import { Footer } from "./footer/Footer.js";
 
 
 const showPostList = () => {
@@ -17,6 +18,11 @@ const showNavBar = () => {
     //Get a reference to the location on the DOM where the nav will display
     const navElement = document.querySelector("nav");
 	navElement.innerHTML = NavBar();
+}
+
+const showFooter = () => {
+	const footerElement = document.querySelector("footer");
+		footerElement.innerHTML = Footer();
 }
 
 
@@ -60,6 +66,7 @@ applicationElement.addEventListener("click", event => {
 
 
 const startGiffyGram = () => {
+	showFooter();
     showNavBar();
 	showPostList();
     theJokes();
