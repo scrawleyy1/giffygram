@@ -1,9 +1,10 @@
 
 import { getJokes } from "./data/JokesData.js";
 import { NavBar } from "./nav/NavBar.js";
-import { getPosts } from "./data/DataManager.js"
+import { getPosts, createPost } from "./data/DataManager.js"
 import { PostList } from "./feed/PostList.js"
 import { Footer } from "./footer/Footer.js";
+import { PostEntry } from "./feed/PostEntry.js";
 
 
 const showPostList = () => {
@@ -25,7 +26,12 @@ const showFooter = () => {
 		footerElement.innerHTML = Footer();
 }
 
-
+const showPostEntry = () => { 
+	//Get a reference to the location on the DOM where the nav will display
+	const entryElement = document.querySelector(".entryForm");
+	entryElement.innerHTML = PostEntry();
+  }
+  
 // const startGiffyGram = () => {
 //     const postElement = document.querySelector(".postList");
 // 	postElement.innerHTML = "Hello Cohort 51"
@@ -46,6 +52,8 @@ const theJokes = () => {
 })
 }
 
+
+
 const applicationElement = document.querySelector(".giffygram");
 
 applicationElement.addEventListener("click", event => {
@@ -55,7 +63,45 @@ applicationElement.addEventListener("click", event => {
 	}
 })
 
+applicationElement.addEventListener("click", (event) => {
+	
+	if (event.target.id.startsWith("edit")){
+		console.log("post clicked", event.target.id.split("--"))
+		console.log("the id is", event.target.id.split("--")[1])
+	}
+})
 
+applicationElement.addEventListener("click", event => {
+	if (event.target.id === "newPost__cancel") {
+		//clear the input fields
+	}
+  })
+  
+  applicationElement.addEventListener("click", event => {
+	event.preventDefault();
+	if (event.target.id === "newPost__submit") {
+	//collect the input values into an object to post to the DB
+	  const title = document.querySelector("input[name='postTitle']").value
+	  const url = document.querySelector("input[name='postURL']").value
+	  const description = document.querySelector("textarea[name='postDescription']").value
+	  //we have not created a user yet - for now, we will hard code `1`.
+	  //we can add the current time as well
+	  const postObject = {
+		  title: title,
+		  imageURL: url,
+		  description: description,
+		  userId: 1,
+		  timestamp: Date.now()
+	  }
+  
+	// be sure to import from the DataManager
+		createPost(postObject)
+		.then(dbResponse => {
+			showPostList()
+		});
+	}
+  })
+  
 
 // const aJoke = getJokes()
 // 	.then(apijoke =>{
@@ -68,6 +114,7 @@ applicationElement.addEventListener("click", event => {
 const startGiffyGram = () => {
 	showFooter();
     showNavBar();
+	showPostEntry();
 	showPostList();
     theJokes();
 }
