@@ -33,24 +33,18 @@
   ],
   "posts": [
     {
-      "id": 1,
+      "title": "TGIF!!!!!!",
+      "imageURL": "https://media.giphy.com/media/sTczweWUTxLqg/giphy.gif?cid=ecf05e4793db3e9fc94b97c06fceb6390ec88a89236ef93d&rid=giphy.gif&ct=g",
+      "description": "undefined",
       "userId": 1,
-      "title": "TGIF!",
-      "imageURL": "https://media.giphy.com/media/sTczweWUTxLqg/giphy.gif?cid=ecf05e4793db3e9fc94b97c06fceb6390ec88a89236ef93d&rid=giphy.gif&ct=g"
+      "timestamp": null,
+      "id": 1
     },
     {
       "id": 2,
       "userId": 1,
       "title": "Sleepy!",
       "imageURL": "https://media.giphy.com/media/ZLxRWG0vhzpiE/giphy.gif"
-    },
-    {
-      "title": "",
-      "imageURL": "https://media.giphy.com/media/FcuiZUneg1YRAu1lH2/giphy.gif",
-      "description": "My head hurts dog!",
-      "userId": 1,
-      "timestamp": 1631129149929,
-      "id": 3
     },
     {
       "title": "Need a nap!",

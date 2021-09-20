@@ -1,10 +1,11 @@
 
 import { getJokes } from "./data/JokesData.js";
 import { NavBar } from "./nav/NavBar.js";
-import { getPosts, createPost } from "./data/DataManager.js"
+import { getPosts, createPost, deletePost, getSinglePost, updatePost, getLoggedInUser } from "./data/DataManager.js"
 import { PostList } from "./feed/PostList.js"
 import { Footer } from "./footer/Footer.js";
 import { PostEntry } from "./feed/PostEntry.js";
+import { PostEdit } from "./feed/PostEdit.js";
 
 
 const showPostList = () => {
@@ -64,12 +65,15 @@ applicationElement.addEventListener("click", event => {
 })
 
 applicationElement.addEventListener("click", (event) => {
-	
 	if (event.target.id.startsWith("edit")){
-		console.log("post clicked", event.target.id.split("--"))
-		console.log("the id is", event.target.id.split("--")[1])
 	}
 })
+
+const showEdit = (postObj) => {
+	const entryElement = document.querySelector(".entryForm");
+	entryElement.innerHTML = PostEdit(postObj);
+  }
+	
 
 applicationElement.addEventListener("click", event => {
 	if (event.target.id === "newPost__cancel") {
@@ -109,7 +113,57 @@ applicationElement.addEventListener("click", event => {
 // 	})
 // 	console.log("a joke", aJoke)
 
+applicationElement.addEventListener("click", event => {
+	console.log("eventTarget", event.target.id);
+	event.preventDefault();
+	if (event.target.id.startsWith("delete")) {
+	  const postId = event.target.id.split("__")[1];
+	  deletePost(postId)
+		.then(response => {
+		  showPostList();
+		})
+	}
+  })
 
+  applicationElement.addEventListener("click", event => {
+	event.preventDefault();
+	if (event.target.id.startsWith("edit")) {
+	  const postId = event.target.id.split("__")[1];
+	  getSinglePost(postId)
+		.then(response => {
+		  showEdit(response);
+		})
+	}
+  })
+
+  applicationElement.addEventListener("click", event => {
+	event.preventDefault();
+	if (event.target.id.startsWith("updatePost")) {
+	  const postId = event.target.id.split("__")[1];
+	  //collect all the details into an object
+	  const title = document.querySelector("input[name='postTitle']").value
+	  const url = document.querySelector("input[name='postURL']").value
+	  const description = document.querySelector("textarea[name='postDescription']").value
+	  const timestamp = document.querySelector("input[name='postTime']").value
+	  
+	  const postObject = {
+		title: title,
+		imageURL: url,
+		description: description,
+		userId: getLoggedInUser().id,
+		timestamp: parseInt(timestamp),
+		id: parseInt(postId)
+	  }
+	  
+	  updatePost(postObject)
+		.then(response => {
+		  showPostList();
+		})
+	}
+  })
+  
+  
+  
 
 const startGiffyGram = () => {
 	showFooter();
