@@ -43,10 +43,22 @@ export const usePostCollection = () => {
   return [...postCollection];
 }
 
+// export const getPosts = () => {
+// 	return fetch("http://localhost:8088/posts")
+// 	.then(response => response.json())
+// }
+
 export const getPosts = () => {
-	return fetch("http://localhost:8088/posts")
-	.then(response => response.json())
+	const userId = getLoggedInUser().id
+	return fetch(`http://localhost:8088/posts?_expand=user`)
+	  .then(response => response.json())
+	  .then(parsedResponse => {
+		console.log("data with user", parsedResponse)
+		postCollection = parsedResponse
+		return parsedResponse;
+	  })
 }
+
 
 
 export const deletePost = postId => {
@@ -108,3 +120,19 @@ export const updatePost = postObj => {
 		.then(response => response.json())
 		
 }
+
+export const registerUser = (userObj) => {
+	return fetch(`http://localhost:8088/users`, {
+	  method: "POST",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(userObj)
+	})
+	.then(response => response.json())
+	.then(parsedUser => {
+	  setLoggedInUser(parsedUser);
+	  return getLoggedInUser();
+	})
+  }
+  
