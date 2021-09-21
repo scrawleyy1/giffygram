@@ -1,7 +1,7 @@
 
 import { getJokes } from "./data/JokesData.js";
 import { NavBar } from "./nav/NavBar.js";
-import { getPosts, createPost,  deletePost, getSinglePost, updatePost, logoutUser, setLoggedInUser, loginUser} from "./data/DataManager.js"
+import { getPosts, createPost,  deletePost, getSinglePost, updatePost, logoutUser, setLoggedInUser, loginUser, getLoggedInUser} from "./data/DataManager.js"
 import { PostList } from "./feed/PostList.js"
 import { Footer } from "./footer/Footer.js";
 import { PostEntry } from "./feed/PostEntry.js";
@@ -197,7 +197,33 @@ applicationElement.addEventListener("click", event => {
 		})
 	}
 })
+
+applicationElement.addEventListener("click", event => {
+	event.preventDefault();
+	if (event.target.id === "register__submit") {
+	  //collect all the details into an object
+	  const userObject = {
+		name: document.querySelector("input[name='registerName']").value,
+		email: document.querySelector("input[name='registerEmail']").value
+	  }
+	  registerUser(userObject)
+	  .then(dbUserObj => {
+		sessionStorage.setItem("user", JSON.stringify(dbUserObj));
+		startGiffyGram();
+	  })
+	}
+})
+
+applicationElement.addEventListener("click", event => {
+	if (event.target.id === "logout") {
+	  logoutUser();
+	  console.log(getLoggedInUser());
+	  sessionStorage.clear();
+	  checkForUser();
+	}
+  })
   
+    
 
 const startGiffyGram = () => {
 	showFooter();
