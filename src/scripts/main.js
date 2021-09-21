@@ -34,7 +34,7 @@ const showPostEntry = () => {
 	//Get a reference to the location on the DOM where the nav will display
 	const entryElement = document.querySelector(".entryForm");
 	entryElement.innerHTML = PostEntry();
-  }
+}
 
 const checkForUser = () => {
 	if (sessionStorage.getItem("user")){
@@ -57,6 +57,10 @@ const showLoginRegister = () => {
   	postElement.innerHTML = "";
 }
 
+const showEdit = (postObj) => {
+	const entryElement = document.querySelector(".entryForm");
+	entryElement.innerHTML = PostEdit(postObj);
+}
 
 const theJokes = () => {
     const postElement = document.querySelector(".jokesList");
@@ -64,13 +68,6 @@ const theJokes = () => {
 	postElement.innerHTML = `<h3>${apiJoke.joke}</h3>`
 })
 }
-
-const showEdit = (postObj) => {
-	const entryElement = document.querySelector(".entryForm");
-	entryElement.innerHTML = PostEdit(postObj);
-  }
-
-
 
 
 const applicationElement = document.querySelector(".giffygram");
@@ -95,7 +92,7 @@ applicationElement.addEventListener("click", event => {
 		}
 	  })
 	}
-  })
+})
   
 
 applicationElement.addEventListener("click", event => {
@@ -103,7 +100,7 @@ applicationElement.addEventListener("click", event => {
 	  logoutUser();
 	  console.log(getLoggedInUser());
 	}
-  })
+})
 
 applicationElement.addEventListener("click", event => {
     console.log("what was cicked", event.target)
@@ -117,17 +114,14 @@ applicationElement.addEventListener("click", (event) => {
 	}
 })
 
-const showEdit = (postObj) => {
-	const entryElement = document.querySelector(".entryForm");
-	entryElement.innerHTML = PostEdit(postObj);
-  }
+
 	
 
 applicationElement.addEventListener("click", event => {
 	if (event.target.id === "newPost__cancel") {
 		//clear the input fields
 	}
-  })
+})
   
 applicationElement.addEventListener("click", event => {
 	event.preventDefault();
@@ -152,7 +146,7 @@ applicationElement.addEventListener("click", event => {
 			showPostList()
 		});
 	}
-  })
+})
 
 
 applicationElement.addEventListener("click", event => {
@@ -202,7 +196,7 @@ applicationElement.addEventListener("click", event => {
 		  showPostList();
 		})
 	}
-  })
+})
   
 
 const startGiffyGram = () => {
