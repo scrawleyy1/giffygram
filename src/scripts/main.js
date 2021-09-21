@@ -10,6 +10,7 @@ import { LoginForm } from "./auth/LoginForm.js";
 import { RegisterForm } from "./auth/RegisterForm.js";
 
 
+
 const showPostList = () => {
 	//Get a reference to the location on the DOM where the list will display
 	const postElement = document.querySelector(".postList");
@@ -112,12 +113,15 @@ applicationElement.addEventListener("click", event => {
 })
 
 applicationElement.addEventListener("click", (event) => {
-	
 	if (event.target.id.startsWith("edit")){
-		console.log("post clicked", event.target.id.split("--"))
-		console.log("the id is", event.target.id.split("--")[1])
 	}
 })
+
+const showEdit = (postObj) => {
+	const entryElement = document.querySelector(".entryForm");
+	entryElement.innerHTML = PostEdit(postObj);
+  }
+	
 
 applicationElement.addEventListener("click", event => {
 	if (event.target.id === "newPost__cancel") {
@@ -150,8 +154,9 @@ applicationElement.addEventListener("click", event => {
 	}
   })
 
-  applicationElement.addEventListener("click", event => {
-	event.preventDefault();
+
+applicationElement.addEventListener("click", event => {
+  event.preventDefault();
 	if (event.target.id.startsWith("delete")) {
 	  const postId = event.target.id.split("__")[1];
 	  deletePost(postId)
@@ -159,8 +164,8 @@ applicationElement.addEventListener("click", event => {
 		  showPostList();
 		})
 	}
-  })
-  
+})
+
   applicationElement.addEventListener("click", event => {
 	event.preventDefault();
 	if (event.target.id.startsWith("edit")) {
@@ -170,8 +175,8 @@ applicationElement.addEventListener("click", event => {
 		  showEdit(response);
 		})
 	}
-  })
-  
+})
+
 
 applicationElement.addEventListener("click", event => {
 	event.preventDefault();

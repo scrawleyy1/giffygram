@@ -2,7 +2,7 @@ let loggedInUser = {}
 
 export const logoutUser = () => {
 	loggedInUser = {}
-  }
+}
 
 export const getLoggedInUser = () => {
 	return loggedInUser;
@@ -26,7 +26,7 @@ export const loginUser = (userObj) => {
 		return false;
 	  }
 	})
-  }
+}
   
 
 export const getUsers = () => {
@@ -48,10 +48,22 @@ export const getPosts = () => {
 	.then(response => response.json())
 }
 
-// export const getSinglePost = (postId) => {
-// 	return fetch(`http://localhost:8088/posts/${postId}`)
-// 	  .then(response => response.json())
-//   }
+
+export const deletePost = postId => {
+	return fetch(`http://localhost:8088/posts/${postId}`, {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json"
+		}
+  
+	})
+		.then(response => response.json())
+  }
+  
+  export const getSinglePost = (postId) => {
+	return fetch(`http://localhost:8088/posts/${postId}`)
+	  .then(response => response.json())
+  }
   
 
 export const createPost = postObj => {
@@ -65,6 +77,7 @@ export const createPost = postObj => {
 	})
 		.then(response => response.json())
   }
+
 
   export const deletePost = postId => {
 	return fetch(`http://localhost:8088/posts/${postId}`, {
@@ -95,19 +108,3 @@ export const updatePost = postObj => {
 		.then(response => response.json())
 		
   }
-  
-  
-  
-// May need this idk
-// }
-// export const getPosts = () => {
-//   return fetch("http://localhost:8088/posts")
-//     .then(response => response.json())
-//     .then(parsedResponse => {
-//       postCollection = parsedResponse
-//       return parsedResponse;
-//     })
-// }
-
-			// console.log("what is response", response)
-		// return response.json()

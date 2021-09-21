@@ -33,10 +33,12 @@
   ],
   "posts": [
     {
-      "id": 1,
+      "title": "TGIF!!!!!!",
+      "imageURL": "https://media.giphy.com/media/sTczweWUTxLqg/giphy.gif?cid=ecf05e4793db3e9fc94b97c06fceb6390ec88a89236ef93d&rid=giphy.gif&ct=g",
+      "description": "undefined",
       "userId": 1,
-      "title": "TGIF!",
-      "imageURL": "https://media.giphy.com/media/sTczweWUTxLqg/giphy.gif?cid=ecf05e4793db3e9fc94b97c06fceb6390ec88a89236ef93d&rid=giphy.gif&ct=g"
+      "timestamp": null,
+      "id": 1
     },
     {
       "id": 2,
