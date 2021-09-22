@@ -1,7 +1,7 @@
 
 import { getJokes } from "./data/JokesData.js";
 import { NavBar } from "./nav/NavBar.js";
-import { getPosts, createPost,  deletePost, getSinglePost, updatePost, logoutUser, setLoggedInUser, loginUser, getLoggedInUser} from "./data/DataManager.js"
+import { getPosts, createPost,  deletePost, getSinglePost, updatePost, logoutUser, setLoggedInUser, loginUser, getLoggedInUser, postLike} from "./data/DataManager.js"
 import { PostList } from "./feed/PostList.js"
 import { Footer } from "./footer/Footer.js";
 import { PostEntry } from "./feed/PostEntry.js";
@@ -71,6 +71,21 @@ const theJokes = () => {
 
 
 const applicationElement = document.querySelector(".giffygram");
+
+applicationElement.addEventListener("click", event => {
+	event.preventDefault();
+	if (event.target.id.startsWith("like")) {
+	  const likeObject = {
+		 postId: parseInt(event.target.id.split("__")[1]),
+		 userId: getLoggedInUser().id
+	  }
+	  postLike(likeObject)
+		.then(response => {
+		  showPostList();
+		})
+	}
+  })
+
 
 applicationElement.addEventListener("click", event => {
 	event.preventDefault();
